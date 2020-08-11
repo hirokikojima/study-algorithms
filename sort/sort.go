@@ -1,10 +1,15 @@
 package sort
 
+import (
+	"github.com/hirokikojima/study-algorithms/data_structure"
+)
+
 type Sort interface {
 	SelectionSort() ([]int, error)
 	BubbleSort() ([]int, error)
 	InsertionSort() ([]int, error)
 	QuickSort() ([]int, error)
+	HeapSort() ([]int, error)
 }
 
 type sort struct {
@@ -111,4 +116,14 @@ func (s *sort) subQuickSort(left int, right int) error {
 	}
 
 	return nil
+}
+
+func (s *sort) HeapSort() ([]int, error) {
+	heap, err := data_structure.BuildMinHeap(s.List);
+	if err != nil {
+		return nil, err
+	}
+
+	heap.Sort()
+	return s.List, nil
 }

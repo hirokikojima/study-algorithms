@@ -6,6 +6,8 @@ import (
 	"testing"
 )
 
+const N = 100000
+
 func TestSelectionSort(t *testing.T) {
 	expect := []int{0,1,2,3,4,5,6,7,8,9}
 	list := []int{0,9,8,7,6,5,4,3,2,1}
@@ -58,10 +60,23 @@ func TestQuickSort(t *testing.T) {
 	}
 }
 
+func TestHeapSort(t *testing.T) {
+	expect := []int{9,8,7,6,5,4,3,2,1,0}
+	list := []int{0,9,8,7,6,5,4,3,2,1}
+
+	sort := NewSort(list)
+
+	sort.HeapSort()
+
+	if !reflect.DeepEqual(list, expect) {
+		t.Error(list)
+	}
+}
+
 func BenchmarkSelectionSort(b *testing.B) {
 	list := []int{}
-	for i := 0; i < 10000; i++ {
-		list = append(list, rand.Intn(10000))
+	for i := 0; i < N; i++ {
+		list = append(list, rand.Intn(N))
 	}
 
 	sort := NewSort(list)
@@ -75,8 +90,8 @@ func BenchmarkSelectionSort(b *testing.B) {
 
 func BenchmarkBubbleSort(b *testing.B) {
 	list := []int{}
-	for i := 0; i < 10000; i++ {
-		list = append(list, rand.Intn(10000))
+	for i := 0; i < N; i++ {
+		list = append(list, rand.Intn(N))
 	}
 
 	sort := NewSort(list)
@@ -90,8 +105,8 @@ func BenchmarkBubbleSort(b *testing.B) {
 
 func BenchmarkInsertionSort(b *testing.B) {
 	list := []int{}
-	for i := 0; i < 10000; i++ {
-		list = append(list, rand.Intn(10000))
+	for i := 0; i < N; i++ {
+		list = append(list, rand.Intn(N))
 	}
 
 	sort := NewSort(list)
@@ -103,10 +118,25 @@ func BenchmarkInsertionSort(b *testing.B) {
 	}
 }
 
-func BenchmarkQuickSort(b *testing.B) {
+// func BenchmarkQuickSort(b *testing.B) {
+// 	list := []int{}
+// 	for i := 0; i < N; i++ {
+// 		list = append(list, rand.Intn(N))
+// 	}
+
+// 	sort := NewSort(list)
+
+// 	b.ResetTimer()
+
+// 	for i := 0; i < b.N; i++ {
+// 		sort.QuickSort()
+// 	}
+// }
+
+func BenchmarkHeapSort(b *testing.B) {
 	list := []int{}
-	for i := 0; i < 10000; i++ {
-		list = append(list, rand.Intn(10000))
+	for i := 0; i < N; i++ {
+		list = append(list, rand.Intn(N))
 	}
 
 	sort := NewSort(list)
@@ -114,6 +144,6 @@ func BenchmarkQuickSort(b *testing.B) {
 	b.ResetTimer()
 
 	for i := 0; i < b.N; i++ {
-		sort.QuickSort()
+		sort.HeapSort()
 	}
 }
