@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/hirokikojima/study-algorithms/others"
 	"github.com/hirokikojima/study-algorithms/search"
 	"github.com/hirokikojima/study-algorithms/sort"
 )
@@ -38,4 +39,6 @@ func main() {
 	sort.BubbleSort()
 
 	sort.QuickSort()
+
+	others.Flog()
 }
