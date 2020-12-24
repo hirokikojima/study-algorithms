@@ -5,6 +5,12 @@ import (
 	"math"
 )
 
+/**
+ * DP (最小化問題)
+ *
+ * 参考URL
+ * https://qiita.com/drken/items/dc53c683d6de8aeacf5a
+ */
 func Flog(n int) (int, error) {
 	var h []float64
 	
